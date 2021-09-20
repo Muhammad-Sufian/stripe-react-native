@@ -10,7 +10,7 @@ const stripe = new Stripe('_secret_key_from_stripe_',{
 const app = express()
 app.use(express.json())
 
-//This is the first API which the application will call. The application will send list of services to the system and then the server will calculate the amount and tehen will create payment intent and will send back client secret, which it gets from it.
+//This is the first API which the application will call. The application will send list of products to the system and then the server will calculate the amount and then will create payment intent and will send back client secret, which it gets from it.
 app.post('/create-payment-intent',async(req,res)=>{
     const paymentIntent = await stripe.paymentIntents.create({
         amount: 400, // 4$
@@ -32,7 +32,7 @@ app.get('/check-transaction/',async(req,res)=>{
     let payment_intent = req.query.payment_intent
 
     var myHeaders = new fetch.Headers()
-    myHeaders.append('Authorization', 'Bearer sk_test_51JTRiDASil5ncF5z8O5o6MwSCi1aNK2rP3EQxgfD9pUn5UrX59xnK6tEltGMG8iUTBpilhW3DsEmrDkonUl1Y2ph00TZqrCGQj')
+    myHeaders.append('Authorization', 'Bearer __STRIPE_SECRET_KEY__')
 
     var requestOptions = {
         method: 'GET',
